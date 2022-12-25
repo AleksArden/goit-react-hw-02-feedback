@@ -1,14 +1,13 @@
-import PropTypes from 'prop-types'; 
-
-
+import PropTypes from 'prop-types';
+import css from './Statistics.module.css';
 
 export const Statistics = ({
   total,
   positivePercentage,
   good,
   neutral,
-    bad,
-  children
+  bad,
+  children,
 }) => {
   const state = {
     good,
@@ -17,33 +16,35 @@ export const Statistics = ({
   };
   return (
     <>
-      <h3>Statistics</h3>
-     
-        {total === 0 ? (children) : (
-          <ul>
-            {Object.keys(state).map(key => (
-              <li key={key}>
-                <p>
-                  {key}: {state[key]}
-                </p>
-              </li>
-            ))}
-            <li>
-              <p>Total: {total}</p>
+      <h3 className={css.title}>Statistics</h3>
+
+      {total === 0 ? (
+        children
+      ) : (
+        <ul className={css.list}>
+          {Object.keys(state).map(key => (
+            <li key={key}>
+              <p>
+                {key}: {state[key]}
+              </p>
             </li>
-            <li>
-              <p>Positive feedback: {positivePercentage || 0}%</p>
-            </li>
-          </ul>
-        )}
+          ))}
+          <li>
+            <p>Total: {total}</p>
+          </li>
+          <li>
+            <p>Positive feedback: {positivePercentage || 0}%</p>
+          </li>
+        </ul>
+      )}
     </>
   );
 };
 Statistics.propTypes = {
-     total: PropTypes.number.isRequired,
+  total: PropTypes.number.isRequired,
   positivePercentage: PropTypes.number.isRequired,
   good: PropTypes.number.isRequired,
   neutral: PropTypes.number.isRequired,
-    bad: PropTypes.number.isRequired,
+  bad: PropTypes.number.isRequired,
   children: PropTypes.node,
-}
+};
