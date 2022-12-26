@@ -36,15 +36,17 @@ export class App extends Component {
             options={['good', 'neutral', 'bad']}
             onLeaveFeedback={this.handleClick}
           />
-          <Statistics
-            good={good}
-            neutral={neutral}
-            bad={bad}
-            total={total}
-            positivePercentage={positivePercentage}
-          >
+          {total === 0 ? (
             <Notification message="There is no feedback" />
-          </Statistics>
+          ) : (
+            <Statistics
+              good={good}
+              neutral={neutral}
+              bad={bad}
+              total={total}
+              positivePercentage={positivePercentage}
+            />
+          )}
         </Section>
       </div>
     );
